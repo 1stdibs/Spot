@@ -76,6 +76,10 @@ module Spot
       Player.mothrastage
     end
 
+    get '/deathstar' do
+      Player.deathstar
+    end
+
     put '/play' do
       Player.volume = 45
       Player.play

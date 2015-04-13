@@ -138,5 +138,9 @@ module Spot
       `open /Users/admin/bigboard/mothra-stage.app`
     end
 
+    def self.deathstar
+      `open /Users/admin/bigboard/deathstar.app`
+    end
+
   end
 end
