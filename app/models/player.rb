@@ -137,6 +137,13 @@ module Spot
     def self.mothrastage
       `open /Users/admin/bigboard/mothra-stage.app`
     end
-
+    
+    def self.mechawins
+      'open /Users/admin/bigboard/mecha-wins.app'
+    end
+    
+    def self.mechaloses
+      'open /Users/admin/bigboard/mecha-loses.app'
+    end
   end
 end
