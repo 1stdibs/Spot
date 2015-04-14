@@ -143,11 +143,11 @@ module Spot
     end
 
     def self.mechawins
-      'open /Users/admin/bigboard/mecha-wins.app'
+      `open /Users/admin/bigboard/mecha-wins.app`
     end
 
     def self.mechaloses
-      'open /Users/admin/bigboard/mecha-loses.app'
+      `open /Users/admin/bigboard/mecha-loses.app`
     end
   end
 end

@@ -76,6 +76,14 @@ module Spot
       Player.mothrastage
     end
 
+    get '/mechawins' do
+      Player.mechawins
+    end
+
+    get '/mechaloses' do
+      Player.mechaloses
+    end
+
     get '/deathstar' do
       Player.deathstar
     end
