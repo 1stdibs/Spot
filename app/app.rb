@@ -3,6 +3,8 @@ require 'models/spotify'
 require 'logger'
 require 'json'
 
+AUTHORIZED_IPS=['192.168.100.44']
+
 module Spot
   class App < Sinatra::Base
 
@@ -15,90 +17,182 @@ module Spot
       'Welcome to Spot!<br/>http://github.com/minton/Spot'
     end
 
+    get '/test' do
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        "AUTHORIZED"
+      else
+        "UNAUTHORIZED"
+      end
+    end
+
     put '/say' do
       what = params[:what]
-      Player.say(what)
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.say(what)
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     get '/shipit' do
-      Player.shipit
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.shipit
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     get '/shipit-adminv1' do
-      Player.shipitadminv1
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.shipitadminv1
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     get '/shipit-adminv2' do
-      Player.shipitadminv2
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.shipitadminv2
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     get '/shipit-inventory' do
-      Player.shipitinventory
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.shipitinventory
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     get '/shipit-identity' do
-      Player.shipitidentity
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.shipitidentity
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     get '/shipit-ecom' do
-      Player.shipitecom
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.shipitecom
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     get '/shipit-cms' do
-      Player.shipitcms
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.shipitcms
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     get '/shipit-usercomm' do
-      Player.shipitusercomm
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.shipitusercomm
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     get '/shipit-query' do
-      Player.shipitquery
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.shipitquery
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     get '/damnit-dale' do
-      Player.dale
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.dale
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     get '/mothra-qa' do
-      Player.mothraqa
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.mothraqa
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     get '/mothra-dev' do
-      Player.mothradev
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.mothradev
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     get '/mothra-dev-stable' do
-      Player.mothradevstable
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.mothradevstable
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     get '/mothra-stage' do
-      Player.mothrastage
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.mothrastage
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     get '/mechawins' do
-      Player.mechawins
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.mechawins
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     get '/mechaloses' do
-      Player.mechaloses
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.mechaloses
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     get '/deathstar' do
-      Player.deathstar
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.deathstar
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     put '/play' do
-      Player.volume = 45
-      Player.play
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.volume = 45
+        Player.play
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     put '/pause' do
-      Player.pause
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.pause
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     put '/mute' do
-      Player.mute
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.mute
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     get '/playing' do
@@ -106,51 +200,91 @@ module Spot
     end
 
     put '/next' do
-      Player.next
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.next
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     put '/back' do
-      Player.back
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.back
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     get '/volume' do
-      Player.volume.to_s
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.volume.to_s
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     put  '/volume' do
-      Player.volume = params[:volume].to_i and Player.volume.to_s unless params[:volume].nil?
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.volume = params[:volume].to_i and Player.volume.to_s unless params[:volume].nil?
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     get '/osVolume' do
-      Player.osVolume.to_s
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.osVolume.to_s
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     put  '/osVolume' do
-      Player.osVolume = params[:volume].to_i and Player.volume.to_s unless params[:volume].nil?
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.osVolume = params[:volume].to_i and Player.volume.to_s unless params[:volume].nil?
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     put '/bumpup' do
-      Player.volume = bump_up_volume.to_i
-      Player.volume.to_s
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.volume = bump_up_volume.to_i
+        Player.volume.to_s
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     put '/bumpdown' do
-      Player.volume = Player.volume - bump_down_volume.to_i
-      Player.volume.to_s
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.volume = Player.volume - bump_down_volume.to_i
+        Player.volume.to_s
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     post '/find' do
-      query = params[:q]
-      track_uri = Spotify.find(query)
-      if track_uri.nil?
-        "What the hell is you talkin' 'bout?"
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        query = params[:q]
+        track_uri = Spotify.find(query)
+        if track_uri.nil?
+          "What the hell is you talkin' 'bout?"
+        else
+          Player.play_song(track_uri)
+        end
       else
-        Player.play_song(track_uri)
+        "UNAUTHORIZED"
       end
     end
 
     post '/play-uri' do
-      Player.play_song(params[:uri])
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.play_song(params[:uri])
+      else
+        "UNAUTHORIZED"
+      end
     end
 
     get '/query' do
