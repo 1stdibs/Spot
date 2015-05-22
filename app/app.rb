@@ -3,7 +3,7 @@ require 'models/spotify'
 require 'logger'
 require 'json'
 
-AUTHORIZED_IPS=['192.168.100.44']
+AUTHORIZED_IPS=['192.168.100.44','127.0.0.1']
 
 module Spot
   class App < Sinatra::Base
