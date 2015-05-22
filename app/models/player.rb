@@ -75,6 +75,16 @@ module Spot
       self.playing
     end
 
+    def self.play_video(videoURI)
+      duration = `youtube-dl --get-duration #{videoURI}`
+      system 'osascript ./script/youtube.scpt ' +  videoURI + ' &'
+      duration
+    end
+
+    def self.kill_video
+      `killall afplay`
+    end
+
     def self.say(what)
       currentVolume = self.volume
       self.volume=currentVolume/3

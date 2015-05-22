@@ -287,6 +287,22 @@ module Spot
       end
     end
 
+    get '/play-youtube-uri' do
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.play_video(params[:uri])
+      else
+        "UNAUTHORIZED"
+      end
+    end
+
+    get '/kill-video' do
+      if AUTHORIZED_IPS.include? @env['REMOTE_ADDR']
+        Player.kill_video()
+      else
+        "UNAUTHORIZED"
+      end
+    end
+
     get '/query' do
       tracks = Spotify.findTracks(params[:q])
       res = []
